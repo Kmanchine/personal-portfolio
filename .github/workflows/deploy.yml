@@ -4,15 +4,26 @@ on:
   push:
     branches: [main]
 
+env:
+  IMAGE_NAME: personal-portfolio
+  CONTAINER_NAME: personal-portfolio
+  HOST_PORT: "8007"
+
 jobs:
-  build:
+  deploy:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: npm
-      - run: npm ci
-      - run: npm run build
-      # TODO: add deploy steps (copy .next, pm2 restart, docker compose, etc.)
+
+      - name: Build image
+        run: docker build -t ${{ env.IMAGE_NAME }}:latest .
+
+      - name: Run container on port ${{ env.HOST_PORT }}
+        run: |
+          docker stop ${{ env.CONTAINER_NAME }} 2>/dev/null || true
+          docker rm ${{ env.CONTAINER_NAME }} 2>/dev/null || true
+          docker run -d \
+            --name ${{ env.CONTAINER_NAME }} \
+            -p ${{ env.HOST_PORT }}:3000 \
+            --restart unless-stopped \
+            ${{ env.IMAGE_NAME }}:latest
