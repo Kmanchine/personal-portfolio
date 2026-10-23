@@ -23,8 +23,12 @@ export type Profile = {
   headline: string;
   /** Shown on the anonymous front page instead of name/headline when set. */
   homeTagline?: string;
+  /** Subhead under the tagline on the front page. */
+  homeDeck?: string;
   location?: string;
   about: string;
+  /** Short beats for the front page (e.g. focus areas). */
+  focusAreas?: string[];
   skills: string[];
   experience: {
     role: string;
