@@ -21,6 +21,8 @@ export type SocialLink = {
 export type Profile = {
   name: string;
   headline: string;
+  /** Shown on the anonymous front page instead of name/headline when set. */
+  homeTagline?: string;
   location?: string;
   about: string;
   skills: string[];

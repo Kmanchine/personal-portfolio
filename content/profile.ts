@@ -3,6 +3,7 @@ import type { Profile } from "@/types/content.types";
 export const profile: Profile = {
   name: "Denis Suljevic",
   headline: "Software developer",
+  homeTagline: "Building reliable web systems with clarity and care",
   location: "Your location",
   about:
     "Short intro about what you build and what you are looking for. Edit this in content/profile.ts.",

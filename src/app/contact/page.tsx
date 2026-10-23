@@ -1,29 +1,17 @@
-import { profile } from "../../../content/profile";
+import { LetterContact } from "@/components/contact/letter-contact";
+import { NewspaperShell } from "@/components/newspaper/newspaper-shell";
 
 export default function ContactPage() {
   return (
-    <div className="space-y-8 py-10">
-      <div className="space-y-2">
-        <h1 className="text-3xl font-semibold tracking-tight">Contact</h1>
-        <p className="text-zinc-600 dark:text-zinc-400">
-          Update links in <code className="text-sm">content/profile.ts</code>.
+    <NewspaperShell bare>
+      <div className="space-y-4 text-center">
+        <h2 className="font-display text-3xl font-bold">Correspondence desk</h2>
+        <p className="mx-auto max-w-[min(42rem,90%)] font-serif text-sm italic text-ink/70">
+          Send a letter by post. Open the envelope, write your note, and we will
+          deliver it securely.
         </p>
+        <LetterContact />
       </div>
-
-      <ul className="space-y-3">
-        {profile.social.map((link) => (
-          <li key={link.href}>
-            <a
-              href={link.href}
-              className="text-lg font-medium underline-offset-4 hover:underline"
-              target={link.href.startsWith("http") ? "_blank" : undefined}
-              rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
-            >
-              {link.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
+    </NewspaperShell>
   );
 }
